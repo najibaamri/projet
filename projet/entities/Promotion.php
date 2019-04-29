@@ -10,7 +10,7 @@ class Promotion
     private $pourcentage;
     private $prixAncien;
     private $idevent;
-    private $idproduit;
+    //private $idproduit;
 
 
     /*public static function getPromo($idprod)
@@ -35,7 +35,7 @@ class Promotion
         return $list;
     }*/
 
-    public function __construct($idpromo, $nompromo,$datedebut, $datefin, $pourcentage, $prixancien, $idevent, $idproduit)
+    public function __construct($idpromo, $nompromo,$datedebut, $datefin, $pourcentage, $prixancien, $idevent)
     {
         $this->id = $idpromo;
         $this->nom = $nompromo;
@@ -44,7 +44,7 @@ class Promotion
         $this->pourcentage = $pourcentage;
         $this->prixAncien = $prixancien;
         $this->idevent = $idevent;
-        $this->idproduit = $idproduit;
+        //$this->idproduit = $idproduit;
 
 
 
@@ -160,17 +160,11 @@ class Promotion
         $this->idevent = $idevent;
     }
     
-        public function getidproduit()
-    {
-        return $this->idproduit;
-    }
+    
 
     /**
      * @param mixed $pourcentage
      */
-    public function setidproduit($idproduit)
-    {
-        $this->idproduit = $idproduit;
-    }
+   
     
 }

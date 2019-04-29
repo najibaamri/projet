@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -233,7 +234,7 @@
               <i class="mdi mdi-chart-bar menu-icon"></i>
             </a>
           </li>
-         
+       
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
               <span class="menu-title">Marketing</span>
@@ -242,12 +243,12 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                 <li class="nav-item"> <a class="nav-link" href="AjouterPromo.php"> Ajouter Promotion </a></li>
+                <li class="nav-item"> <a class="nav-link" href="AjouterPromo.php"> Ajouter Promotion </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AfficherPromo.php"> Afficher Promotion </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AjouterEvent.php"> Ajouter Evenement </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AfficherEvent.php"> Afficher Evenement </a></li>
                 <li class="nav-item"> <a class="nav-link" href="statistique.php"> Statistique </a></li>
-                
+
 
               </ul>
               </div>
@@ -263,7 +264,7 @@
                   <p class="text-secondary">Categories</p>                  
                 </div>
                 <ul class="gradient-bullet-list mt-4">
-                 
+                  
                 </ul>
               </div>
             </span>
@@ -277,48 +278,62 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-               <h4 class="card-title">Ajouter Evenement</h4>
+               <h4 class="card-title">Les Promotions</h4>
                   <div class="table-responsive">
-              <form method="POST" action="ajoutEvent.php" class="d-flex align-items-center h-100" name="myForm" >
-<table class="table">
-<tr>
-<td>ID</td>
-<td><input type="number" name="id"  min="1" required></td>
-</tr>
-<tr>
-<td>Nom</td>
-<td><div id="div" style="color: red;"></div>
-  <input type="text" name="nom" id="nom" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
-   oninput="setCustomValidity('')" ></td>
-</tr>
-<tr>
-<td>Date de debut</td>
-<td><input type="date" name="dateD" required></td>
-</tr>
-<tr>
-<td>Date de fin</td>
-<td><input type="date" name="dateF" required></td>
-</tr>
-<tr>
-<td>Description</td>
-<td><input name="description" required> </td>
-</tr>
-<tr>
-<td>Image</td>
-<td><input type="file" name="img"  required></td>
-</tr>
+                    <div align="center">
 
-<tr>
-<td></td>
-<td><input type="submit" name="ajouter" class="btn btn-gradient-primary " value="ajouter"></td>
-</tr>
 
-</table>
-</form>
+       <?php  
+ $connect = mysqli_connect("localhost", "root", "", "projet");  
+ $query = "SELECT pourcentage, count(*) as number FROM promotion GROUP BY pourcentage";  
+ $result = mysqli_query($connect, $query);  
+ ?>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['pourcentage', 'Number'],  
+                          <?php  
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+                               echo "['".$row["pourcentage"]."', ".$row["number"]."],";  
+                          }  
+                          ?>  
+        ]);
+
+        var options = {
+          title: 'Le Nombre Des Promotions Selon Les Pourcentages'
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('bar'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="bar" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
+
+
+
+             <!-- /. PAGE INNER  -->
             </div>
+            </div>
+            <br>
+
+ 
           </div>
-          
-    
+          </div>
+    </div>
+  </div>
                   </div>
                 </div>
               </div>
@@ -352,9 +367,6 @@
   <!-- Custom js for this page-->
   <script src="js/dashboard.js"></script>
   <!-- End custom js for this page-->
-  <script src="saisie.js"></script>
-    <script src="date.js"></script>
-
 </body>
 
 </html>

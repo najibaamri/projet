@@ -262,6 +262,8 @@ if (isset($_GET['id'])){
                 <li class="nav-item"> <a class="nav-link" href="AfficherPromo.php"> Afficher Promotion </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AjouterEvent.php"> Ajouter Evenement </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AfficherEvent.php"> Afficher Evenement </a></li>
+                <li class="nav-item"> <a class="nav-link" href="statistique.php"> Statistique </a></li>
+                
 
               </ul>
               </div>

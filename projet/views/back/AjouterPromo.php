@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-<link rel="stylesheet" type="text/css" href="vanilla.datepicker.css">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -248,6 +247,8 @@
                 <li class="nav-item"> <a class="nav-link" href="AfficherPromo.php"> Afficher Promotion </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AjouterEvent.php"> Ajouter Evenement </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AfficherEvent.php"> Afficher Evenement </a></li>
+                <li class="nav-item"> <a class="nav-link" href="statistique.php"> Statistique </a></li>
+                
 
               </ul>
               </div>
@@ -279,7 +280,7 @@
                 <div class="card-body">
                <h4 class="card-title">Ajouter Promotion</h4>
                   <div class="table-responsive">
-              <form method="POST" action="ajoutPromo1.php" class="forms-sample"  id="myForm">
+              <form method="POST" action="ajoutPromo1.php" class="forms-sample"  name="myForm">
 <table class="table">
 <tr>
 <td>ID</td>
@@ -288,57 +289,37 @@
 <tr>
 <td>Nom</td>
 <td><div id="div" style="color: red;"></div>
-	<input type="text" id="nom" name="nom" required>
+  <input type="text" id="nom" name="nom" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
+   oninput="setCustomValidity('')">
 </td>
 </tr>
 <tr>
 <td>Date de debut</td>
-<td><input type="date" name="dateD" id="dateDE" required></td>
+<td><input type="date" name="dateD" id="dateD" required></td>
 
 </tr>
 <tr>
 <td>Date de fin</td>
-<td><input type="date" name="dateF" min="dateDE" required="dateD"></td>
+<td><input type="date" name="dateF" id="dateF" required></td>
 </tr>
 <tr>
 <td>Pourcentage</td>
 <td><div id="div2" style="background-color: red;"></div>
-	<input type="number" id="pourcentage" name="pourcentage" min="1" max="100" required></td>
+  <input type="number" id="pourcentage" name="pourcentage" min="1" max="100" required></td>
 </tr>
-<tr>
-<td>ID Produit</td>
-<td>
-
-<select name="idproduit" id="idproduit" onchange="ddlselect();" required>
-  <option>id</option>
-    <?php
-        include "../../config.php";
-    $res="select id from produit ";
-    $db = config::getConnexion();
-        $liste=$db->query($res);
-
-        foreach($liste as $row){
-          $option="<option>" . $row['id'];
-
-            echo $option ;
-  }
-    ?>
- 
-  
-</select>
 <tr>
 <tr>
 <td>Prix Ancien</td>
 <td>
 <select id="prixAncien" name="prixAncien">
     <?php
-      $res="select prix,id from produit ";
+    include "../../config.php";
+      $res="select prix,id from produit order by id asc ";
     $db = config::getConnexion();
         $liste=$db->query($res);
 
         foreach($liste as $row){
           $option="<option>" . $row['prix'];         
-            $option="<option>" . $row['id'];
           
             echo $option ;
   }
@@ -416,6 +397,7 @@
   <script src="js/dashboard.js"></script>
   <!-- End custom js for this page-->
   <script src="saisie.js"></script>
+  <script src="date.js"></script>
 </body>
 
 </html>

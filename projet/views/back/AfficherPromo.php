@@ -38,7 +38,7 @@ $listePromos=$promo1C->afficherPromos();
               <div class="input-group-prepend bg-transparent">
                   <i class="input-group-text border-0 mdi mdi-magnify"></i>                
               </div>
-              <input type="text" class="form-control bg-transparent border-0" placeholder="Search ">
+              <input type="text" id="myInput" onkeyup="myFunction()" title="type in a name" class="form-control bg-transparent border-0" placeholder="Search ">
             </div>
           </form>
         </div>
@@ -254,6 +254,8 @@ $listePromos=$promo1C->afficherPromos();
                 <li class="nav-item"> <a class="nav-link" href="AfficherPromo.php"> Afficher Promotion </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AjouterEvent.php"> Ajouter Evenement </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AfficherEvent.php"> Afficher Evenement </a></li>
+                <li class="nav-item"> <a class="nav-link" href="statistique.php"> Statistique </a></li>
+                
 
               </ul>
               </div>
@@ -285,9 +287,10 @@ $listePromos=$promo1C->afficherPromos();
                 <div class="card-body">
                <h4 class="card-title">Les Promotions</h4>
                   <div class="table-responsive">
-              <table class="table">
+              <table id="myTable" class="table">
 <tr>
 <th>Id</th>
+<th>Image Produit</th>
 <th>Nom</th>
 <th>Date de debut</th>
 <th>Date de fin</th>
@@ -295,7 +298,6 @@ $listePromos=$promo1C->afficherPromos();
 <th>Prix Ancien</th>
 <th>Nouveau Prix</th>
 <th>Id Event</th>
-<th>Id Produit</th>
 <th>supprimer</th>
 <th>modifier</th>
 </tr>
@@ -305,12 +307,31 @@ foreach($listePromos as $row){
   ?>
   <tr>
   <td><?PHP echo $row['id']; ?></td>
+   <td><?php
+      $res="select produit.image, produit.prix from produit,promotion where produit.prix = promotion.prixAncien ";
+    $db = config::getConnexion();
+        $data=$db->query($res);
+
+  # code...
+           foreach($data as $rou){
+              
+            if ($row['prixAncien'] == $rou['prix']) {
+                          
+          $s=$rou['image'] ;
+}
+
+}
+    ?>
+    <img src="<?php echo 'images/'.$s ; ?>">
+    <?php  
+  ?>
+  </td>
   <td><?PHP echo $row['nom']; ?></td>
   <td><?PHP echo $row['dateDebut']; ?></td>
   <td><?PHP echo $row['dateFin']; ?></td>
   <td><?PHP echo $row['pourcentage']." %"; ?></td>
   <td><?PHP echo $row['prixAncien']." DT"; ?></td>
-
+  
   <td>
     <?php
     $a=$row['prixAncien'] - (($row['pourcentage'] * $row['prixAncien'])/100);
@@ -318,22 +339,64 @@ foreach($listePromos as $row){
       ?>
   </td>
   <td><?PHP echo $row['idevent']; ?></td>
-    <td><?PHP echo $row['idproduit']; ?></td>
 
+  </td>
   <td><form method="POST" action="supprimerPromo.php">
   <input type="submit" class="btn btn-gradient-danger btn-sm" name="supprimer" OnClick="return confirm('Voulez vous vraiment supprimer cette promotion ?');" value="supprimer">
   <input type="hidden" value="<?PHP echo $row['id']; ?>" name="id">
   </form>
   </td>
   
+<script>
+
+function myFunction() {
+
+  var input, filter, table, tr, td, i, txtValue;
+
+  input = document.getElementById("myInput");
+
+  filter = input.value.toUpperCase();
+
+  table = document.getElementById("myTable");
+
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+
+    td = tr[i].getElementsByTagName("td")[1];
+
+    if (td) {
+
+      txtValue = td.textContent || td.innerText;
+
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+        tr[i].style.display = "";
+
+      } else {
+
+        tr[i].style.display = "none";
+
+      }
+
+    }      
+
+  }
+
+}
+
+</script>
+
   <td><a class="btn btn-gradient-dark btn-icon-text btn-sm" href="modifierPromo.php?id=<?PHP echo $row['id']; ?>">
   Modifier</a></td>
   </tr>
+
   <?PHP
 }
 ?>
-</table>
 
+</table>
+<td>  
             </div>
             <br>
 

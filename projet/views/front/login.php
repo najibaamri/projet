@@ -43,7 +43,7 @@
 				<div class="row">
 					<div class="col-lg-2 text-center text-lg-left">
 						<!-- logo -->
-						<a href="./index.html" class="site-logo">
+						<a href="./index.php" class="site-logo">
 							<img src="img/logo.png" alt="">
 						</a>
 					</div>
@@ -53,18 +53,14 @@
 							<button><i class="flaticon-search"></i></button>
 						</form>
 					</div>
+					<li><i class="flaticon-profile" aria-hidden="true"></i><a href="login.php">Login</a></li>
+                    <li><i class="flaticon-profile" aria-hidden="true"></i><a href="register.php">Register</a>
 					<div class="col-xl-4 col-lg-5">
 						<div class="user-panel">
 							<div class="up-item">
-								<i class="flaticon-profile"></i>
-								<a href="#">Sign</a> In or <a href="#">Create Account</a>
 							</div>
 							<div class="up-item">
-								<div class="shopping-card">
-									<i class="flaticon-bag"></i>
-									<span>0</span>
-								</div>
-								<a href="#">Shopping Cart</a>
+								
 							</div>
 						</div>
 					</div>
@@ -75,31 +71,15 @@
 			<div class="container">
 				<!-- menu -->
 					<ul class="main-menu">
-					<li><a href="#">Acceuil</a></li>
+					<li><a href="index.php">Acceuil</a></li>
 					<li><a href="#">Catalogue
 						<span class="new">New</span>
 					</a></li>
 					<li><a href="evenement.php">Evenement</a></li>
 					<li><a href="#">Livraison
 					</a></li>
-					<li><a href="#">Shoes</a>
-						<ul class="sub-menu">
-							<li><a href="#">Sneakers</a></li>
-							<li><a href="#">Sandals</a></li>
-							<li><a href="#">Formal Shoes</a></li>
-							<li><a href="#">Boots</a></li>
-							<li><a href="#">Flip Flops</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Pages</a>
-						<ul class="sub-menu">
-							<li><a href="./product.html">Product Page</a></li>
-							<li><a href="./category.html">Category Page</a></li>
-							<li><a href="./cart.html">Cart Page</a></li>
-							<li><a href="./checkout.html">Checkout Page</a></li>
-							<li><a href="./contact.html">Contact Page</a></li>
-						</ul>
-					</li>
+				
+				
 					<li><a href="#">Service après vente</a></li>
 				</ul>
 			</div>

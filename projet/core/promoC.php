@@ -9,7 +9,7 @@ function afficherPromo ($promo){
 		echo "Pourcentage: ".$promo->getPourcentage()."<br>";
 		echo "Prix Ancien: ".$promo->getPrixAncien()."<br>";
 		echo "id Event: ".$promo->getidevent()."<br>";
-		echo "id Produit: ".$promo->getidproduit()."<br>";
+		//echo "id Produit: ".$promo->getidproduit()."<br>";
 
 
 	}
@@ -18,7 +18,7 @@ function afficherPromo ($promo){
 		echo $a;
 	}
 	function ajouterPromo($promo){
-		$sql="insert into promotion (id,nom,dateDebut,dateFin,pourcentage,prixAncien,idevent,idproduit) values (:id, :nom,:dateD,:dateF,:pourcentage,:prixAncien,:idevent,:idproduit)";
+		$sql="insert into promotion (id,nom,dateDebut,dateFin,pourcentage,prixAncien,idevent) values (:id, :nom,:dateD,:dateF,:pourcentage,:prixAncien,:idevent)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
@@ -30,7 +30,7 @@ function afficherPromo ($promo){
         $pourcentage=$promo->getPourcentage();
         $prixAncien=$promo->getPrixAncien();
         $idevent=$promo->getidevent();
-        $idproduit=$promo->getidproduit();
+        //$idproduit=$promo->getidproduit();
 
 		$req->bindValue(':id',$id);
 		$req->bindValue(':nom',$nom);
@@ -39,7 +39,7 @@ function afficherPromo ($promo){
 		$req->bindValue(':pourcentage',$pourcentage);
 		$req->bindValue(':prixAncien',$prixAncien);
 		$req->bindValue(':idevent',$idevent);
-		$req->bindValue(':idproduit',$idproduit);
+		//$req->bindValue(':idproduit',$idproduit);
 
 
 		
@@ -80,7 +80,8 @@ $art="select * from promotion where idevent=".$cat."";
         }	
 	}
 	function supprimerPromo($id){
-		$sql="DELETE FROM promotion where id= :id";
+		$sql="DELETE FROM promotion where id= :id ";
+
 		$db = config::getConnexion();
         $req=$db->prepare($sql);
 		$req->bindValue(':id',$id);
@@ -93,7 +94,7 @@ $art="select * from promotion where idevent=".$cat."";
         }
 	}
 	function modifierPromo($promo,$id){
-		$sql="UPDATE promotion SET id=:idd, nom=:nom,dateDebut=:dateD,dateFin=:dateF,pourcentage=:pourcentage,prixAncien=:prixAncien,idevent=:idevent,idproduit=:idproduit WHERE id=:id";
+		$sql="UPDATE promotion SET id=:idd, nom=:nom,dateDebut=:dateD,dateFin=:dateF,pourcentage=:pourcentage,prixAncien=:prixAncien,idevent=:idevent WHERE id=:id";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
@@ -106,10 +107,10 @@ try{
         $pourcentage=$promo->getPourcentage();
         $prixAncien=$promo->getPrixAncien();
         $idevent=$promo->getidevent();
-        $idproduit=$promo->getidproduit();
+        //$idproduit=$promo->getidproduit();
 
 
-		$datas = array(':idd'=>$idd, ':id'=>$id, ':nom'=>$nom,':dateD'=>$datedebut,':dateF'=>$datefin,':pourcentage'=>$pourcentage,':prixAncien'=>$prixAncien,':idevent'=>$idevent,':idproduit'=>$idproduit);
+		$datas = array(':idd'=>$idd, ':id'=>$id, ':nom'=>$nom,':dateD'=>$datedebut,':dateF'=>$datefin,':pourcentage'=>$pourcentage,':prixAncien'=>$prixAncien,':idevent'=>$idevent);
 		$req->bindValue(':idd',$idd);
 		$req->bindValue(':id',$id);
 		$req->bindValue(':nom',$nom);
@@ -118,7 +119,7 @@ try{
 		$req->bindValue(':pourcentage',$pourcentage);
 		$req->bindValue(':prixAncien',$prixAncien);
 		$req->bindValue(':idevent',$idevent);
-		$req->bindValue(':idproduit',$idproduit);
+		//$req->bindValue(':idproduit',$idproduit);
 
 		
 		
@@ -152,6 +153,20 @@ try{
 		$liste=$db->query($sql);
 		return $liste;
 		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+		function supprimerPromodate(){
+		$today = date("y/m/d");
+		$sql="DELETE FROM promotion where dateFin < ".$today."";
+		$db = config::getConnexion();
+        $req=$db->prepare($sql);
+		//$req->bindValue(':dateF',$dateFin);
+		try{
+            $req->execute();
+           // header('Location: index.php');
+        }
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }

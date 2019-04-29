@@ -38,8 +38,7 @@ $listeEvents=$event1C->afficherEvents();
               <div class="input-group-prepend bg-transparent">
                   <i class="input-group-text border-0 mdi mdi-magnify"></i>                
               </div>
-              <input type="text" class="form-control bg-transparent border-0" placeholder="Search ">
-            </div>
+<input type="text" id="myInput" onkeyup="myFunction()" title="type in a name" class="form-control bg-transparent border-0" placeholder="Search ">            </div>
           </form>
         </div>
         <ul class="navbar-nav navbar-nav-right">
@@ -254,6 +253,8 @@ $listeEvents=$event1C->afficherEvents();
                 <li class="nav-item"> <a class="nav-link" href="AfficherPromo.php"> Afficher Promotion </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AjouterEvent.php"> Ajouter Evenement </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AfficherEvent.php"> Afficher Evenement </a></li>
+                <li class="nav-item"> <a class="nav-link" href="statistique.php"> Statistique </a></li>
+                
 
               </ul>
               </div>
@@ -285,7 +286,7 @@ $listeEvents=$event1C->afficherEvents();
                 <div class="card-body">
                <h4 class="card-title">Les Evenements</h4>
                   <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="myTable">
 <tr>
 <th>Id</th>
 <th>image</th>
@@ -312,6 +313,45 @@ foreach($listeEvents as $row){
   <input type="submit" class="btn btn-gradient-danger btn-sm" name="supprimer" OnClick="return confirm('Voulez vous vraiment supprimer cet evenement ?');" value="supprimer"  >
   <input type="hidden" value="<?PHP echo $row['id']; ?>" name="id">
   </form>
+  <script>
+
+function myFunction() {
+
+  var input, filter, table, tr, td, i, txtValue;
+
+  input = document.getElementById("myInput");
+
+  filter = input.value.toUpperCase();
+
+  table = document.getElementById("myTable");
+
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+
+    td = tr[i].getElementsByTagName("td")[2];
+
+    if (td) {
+
+      txtValue = td.textContent || td.innerText;
+
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+        tr[i].style.display = "";
+
+      } else {
+
+        tr[i].style.display = "none";
+
+      }
+
+    }      
+
+  }
+
+}
+
+</script>
   </td>
   <td><a class="btn btn-gradient-dark btn-icon-text btn-sm" href="ModifierEvent.php?id=<?PHP echo $row['id']; ?>">
   Modifier</a></td>

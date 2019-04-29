@@ -47,7 +47,7 @@ session_start();
 				<div class="row">
 					<div class="col-lg-2 text-center text-lg-left">
 						<!-- logo -->
-						<a href="./index.html" class="site-logo">
+						<a href="./index.php" class="site-logo">
 							<img src="img/logo.png" alt="">
 						</a>
 					</div>
@@ -94,24 +94,8 @@ session_start();
 					<li><a href="#">Livraison
 						
 					</a></li>
-					<li><a href="#">Shoes</a>
-						<ul class="sub-menu">
-							<li><a href="#">Sneakers</a></li>
-							<li><a href="#">Sandals</a></li>
-							<li><a href="#">Formal Shoes</a></li>
-							<li><a href="#">Boots</a></li>
-							<li><a href="#">Flip Flops</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Pages</a>
-						<ul class="sub-menu">
-							<li><a href="./product.html">Product Page</a></li>
-							<li><a href="./category.html">Category Page</a></li>
-							<li><a href="./cart.html">Cart Page</a></li>
-							<li><a href="./checkout.html">Checkout Page</a></li>
-							<li><a href="./contact.html">Contact Page</a></li>
-						</ul>
-					</li>
+					
+					
 					<li><a href="#">Service après vente</a></li>
 				</ul>
 			</div>
@@ -129,7 +113,7 @@ session_start();
 					<div class="row">
 						<div class="col-xl-6 col-lg-7 text-white">
 							<span>New Arrivals</span>
-							<h2>denim jackets</h2>
+							<h2>Nouvelle Salon</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
 							<a href="#" class="site-btn sb-line">DECOUVRIR</a>
 							<a href="#" class="site-btn sb-white">Ajouter au panier</a>
@@ -137,7 +121,7 @@ session_start();
 					</div>
 					<div class="offer-card text-white">
 						<span>from</span>
-						<h2>$29</h2>
+						<h3>2900 DT</h3>
 						<p>SHOP NOW</p>
 					</div>
 				</div>
@@ -147,7 +131,7 @@ session_start();
 					<div class="row">
 						<div class="col-xl-6 col-lg-7 text-white">
 							<span>New Arrivals</span>
-							<h2>denim jackets</h2>
+							<h2>Nouvelle Salon</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
 							<a href="#" class="site-btn sb-line">DECOUVRIR</a>
 							<a href="#" class="site-btn sb-white">AJOUTER AU PANIER</a>
@@ -155,7 +139,7 @@ session_start();
 					</div>
 					<div class="offer-card text-white">
 						<span>from</span>
-						<h2>$29</h2>
+						<h3>3200 DT</h3>
 						<p>SHOP NOW</p>
 					</div>
 				</div>

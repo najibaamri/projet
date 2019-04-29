@@ -49,7 +49,7 @@ $listePromos=$promo1C->afficherPromos1();
 				<div class="row">
 					<div class="col-lg-2 text-center text-lg-left">
 						<!-- logo -->
-						<a href="./index.html" class="site-logo">
+						<a href="./index.php" class="site-logo">
 							<img src="img/logo.png" alt="">
 						</a>
 					</div>
@@ -59,18 +59,14 @@ $listePromos=$promo1C->afficherPromos1();
 							<button><i class="flaticon-search"></i></button>
 						</form>
 					</div>
+<li><i class="flaticon-profile" aria-hidden="true"></i><a href="login.php">Login</a></li>
+                    <li><i class="flaticon-profile" aria-hidden="true"></i><a href="register.php">Register</a>
 					<div class="col-xl-4 col-lg-5">
 						<div class="user-panel">
 							<div class="up-item">
-								<i class="flaticon-profile"></i>
-								<a href="#">Se connecter</a> ou <a href="#">Créer un compte</a>
 							</div>
 							<div class="up-item">
-								<div class="shopping-card">
-									<i class="flaticon-bag"></i>
-									<span>0</span>
-								</div>
-								<a href="#">Panier</a>
+								
 							</div>
 						</div>
 					</div>
@@ -81,31 +77,15 @@ $listePromos=$promo1C->afficherPromos1();
 			<div class="container">
 				<!-- menu -->
 				<ul class="main-menu">
-					<li><a href="#">Acceuil</a></li>
+					<li><a href="index.php">Acceuil</a></li>
 					<li><a href="#">Catalogue
 						<span class="new">New</span>
 					</a></li>
-					<li><a href="evenement.php">Evenement</a></li>
+					<li><a href="evenement.php">Evenements</a></li>
 					<li><a href="#">Livraison
 					</a></li>
-					<li><a href="#">Shoes</a>
-						<ul class="sub-menu">
-							<li><a href="#">Sneakers</a></li>
-							<li><a href="#">Sandals</a></li>
-							<li><a href="#">Formal Shoes</a></li>
-							<li><a href="#">Boots</a></li>
-							<li><a href="#">Flip Flops</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Pages</a>
-						<ul class="sub-menu">
-							<li><a href="./product.html">Product Page</a></li>
-							<li><a href="./category.html">Category Page</a></li>
-							<li><a href="./cart.html">Cart Page</a></li>
-							<li><a href="./checkout.html">Checkout Page</a></li>
-							<li><a href="./contact.html">Contact Page</a></li>
-						</ul>
-					</li>
+			
+				
 					<li><a href="#">Service après vente</a></li>
 				</ul>
 			</div>
@@ -165,6 +145,7 @@ $listePromos=$promo1C->afficherPromos1();
 					</div>-->
 
 				<div class="container">
+
 					<div class="row">
 						<?PHP
 
@@ -178,7 +159,23 @@ $listePromos=$promo1C->afficherPromos1();
 								<div class="pi-pic">
 
 									<div class="tag-sale">SOLDE</div>
-									<a id="h" href="#"><img src="./img/product/13.jpg" alt=""></a>
+									<a id="h" href="#"><?php
+      $res="select produit.image, produit.prix from produit,promotion where produit.prix = promotion.prixAncien ";
+    $db = config::getConnexion();
+        $data=$db->query($res);
+
+  # code...
+           foreach($data as $rou){
+              
+            if ($row['prixAncien'] == $rou['prix']) {
+                          
+          $s=$rou['image'] ;
+}
+
+}
+    ?>
+    <img src="<?php echo 'img/'.$s ; ?>"></a>
+
 									<div class="pi-links">
 										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>AJOUTER AU PANIER</span></a>
 										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
@@ -227,7 +224,6 @@ $listePromos=$promo1C->afficherPromos1();
 	<section class="footer-section">
 		<div class="container">
 			<div class="footer-logo text-center">
-				<a href="home.html"><img src="./img/logo-light.png" alt=""></a>
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-sm-6">

@@ -12,7 +12,7 @@ if (isset($_GET['id'])){
     $dateF=$row['dateFin'];
     $pourcentage=$row['pourcentage'];
     $idevent=$row['idevent'];
-    $idproduit=$row['idproduit'];
+    //$idproduit=$row['idproduit'];
 
 
 ?>
@@ -264,6 +264,8 @@ if (isset($_GET['id'])){
                 <li class="nav-item"> <a class="nav-link" href="AfficherPromo.php"> Afficher Promotion </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AjouterEvent.php"> Ajouter Evenement </a></li>
                 <li class="nav-item"> <a class="nav-link" href="AfficherEvent.php"> Afficher Evenement </a></li>
+                <li class="nav-item"> <a class="nav-link" href="statistique.php"> Statistique </a></li>
+                
 
               </ul>
               </div>
@@ -305,7 +307,7 @@ if (isset($_GET['id'])){
 </tr>
 <tr>
 <td>Nom</td>
-<td><input type="text" name="nom" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres selement')" 
+<td><input type="text" name="nom" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
    oninput="setCustomValidity('')" value="<?PHP echo $nom ?>"></td>
 </tr>
 <tr>
@@ -320,28 +322,7 @@ if (isset($_GET['id'])){
 <td>Pourcentage</td>
 <td><input type="number" min="1" max="100" name="pourcentage" id="pourcentage"  value="<?PHP echo $pourcentage ?>"></td>
 </tr>
-<tr>
-<td>Id Produit</td>
-<td>
-  <select name="idproduit">
-  
-    <?php
-    $res="select id from produit";
-    $db = config::getConnexion();
-        $liste=$db->query($res);
 
-        foreach($liste as $row){
-          $option="<option>" . $row['id'];
-
-            echo $option;
-
-
-  }
-    ?>
-
-  
-</select>
-</td>
 <tr>
 <td>Ancien Prix</td>
 <td>
@@ -438,6 +419,8 @@ if (isset($_GET['id'])){
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="js/dashboard.js"></script>
+  <script src="date.js"></script>
+  <script src="saisie.js"></script>
   <!-- End custom js for this page-->
 <script type="text/javascript">
   function notifyMe() {
